@@ -11,6 +11,7 @@ use Reducktion\Socrates\Tests\Feature\FeatureTest;
 class BelgiumTest extends FeatureTest
 {
     private array $people;
+    private array $bisNumbers;
     private array $invalidIds;
 
     public function setUp(): void
@@ -48,6 +49,29 @@ class BelgiumTest extends FeatureTest
                 'dob' => new DateTime('1940-01-01'),
                 'age' => $this->calculateAge(new DateTime('1940-01-01')),
             ]
+        ];
+
+        $this->bisNumbers = [
+            'dobAndGenderUnknown1' => [
+                'id' => '11200274580',
+                'gender' => null,
+                'dob' => null,
+            ],
+            'dobAndGenderUnknown2' => [
+                'id' => '00200203376',
+                'gender' => null,
+                'dob' => null,
+            ],
+            'dobUnknownGenderKnown' => [
+                'id' => '00400048320',
+                'gender' => Gender::Male,
+                'dob' => null,
+            ],
+            'dobAndGenderKnown' => [
+                'id' => '00421090786',
+                'gender' => Gender::Male,
+                'dob' => new DateTime('2000-02-10'),
+            ],
         ];
 
         $this->invalidIds = [
@@ -93,5 +117,24 @@ class BelgiumTest extends FeatureTest
         $this->expectException(InvalidLengthException::class);
 
         $this->socrates->getCitizenDataFromId('12.12.12-1323.32', Country::Belgium);
+    }
+
+    public function test_bis_number_validation(): void
+    {
+        foreach ($this->bisNumbers as $bisNumber) {
+            self::assertTrue(
+                $this->socrates->validateId($bisNumber['id'], Country::Belgium)
+            );
+        }
+    }
+
+    public function test_bis_number_extraction(): void
+    {
+        foreach ($this->bisNumbers as $bisNumber) {
+            $citizen = $this->socrates->getCitizenDataFromId($bisNumber['id'], Country::Belgium);
+
+            self::assertEquals($bisNumber['gender'], $citizen->getGender());
+            self::assertEquals($bisNumber['dob'], $citizen->getDateOfBirth());
+        }
     }
 }
