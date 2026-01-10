@@ -12,6 +12,7 @@ use Reducktion\Socrates\Models\Citizen;
  * Class BelgiumCitizenInformationExtractor
  *
  * Algorithm adapted from: http://www.ibz.rrn.fgov.be/fileadmin/user_upload/nl/rr/instructies/IT-lijst/IT000_Rijksregisternummer.pdf.
+ * Foreign workers have a BIS number. More information about these types of numbers can be found here: https://testdatagenerator.bignited.be/.
  *
  * @package Reducktion\Socrates\Core\Belgium
  */
