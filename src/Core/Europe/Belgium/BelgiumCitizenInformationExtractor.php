@@ -22,7 +22,7 @@ class BelgiumCitizenInformationExtractor implements CitizenInformationExtractor
     {
         $id = $this->sanitize($id);
 
-        if (! (new BelgiumIdValidator())->validate($id)) {
+        if (! new BelgiumIdValidator()->validate($id)) {
             throw new InvalidIdException();
         }
 

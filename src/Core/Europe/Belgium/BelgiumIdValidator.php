@@ -102,6 +102,6 @@ class BelgiumIdValidator implements IdValidator
 
         $dateOfBirth = new DateTime("$year-$month-$day");
 
-        return (new DateTime())->diff($dateOfBirth)->y >= 12;
+        return new DateTime()->diff($dateOfBirth)->y >= 12;
     }
 }

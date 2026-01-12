@@ -23,6 +23,6 @@ abstract class FeatureTestCase extends TestCase
 
     public function calculateAge(DateTime $dateOfBirth): int
     {
-        return (new DateTime())->diff($dateOfBirth)->y;
+        return new DateTime()->diff($dateOfBirth)->y;
     }
 }

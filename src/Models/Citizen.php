@@ -60,7 +60,7 @@ class Citizen
             throw new UnsupportedOperationException('Citizen date of birth is null.');
         }
 
-        return (new DateTime())->diff($this->dateOfBirth)->y;
+        return new DateTime()->diff($this->dateOfBirth)->y;
     }
 
     /**

@@ -260,7 +260,7 @@ public function extract(string $id): Citizen
 {
     $id = $this->sanitize($id);
 
-    if (! (new SocratiaIdValidator())->validate($id)) {
+    if (! new SocratiaIdValidator()->validate($id)) {
         // Throw one of our internal exceptions
         throw new InvalidIdException();
     }
