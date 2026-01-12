@@ -2,7 +2,9 @@
 
 namespace Reducktion\Socrates\Exceptions;
 
-class InvalidLengthException extends \LogicException
+use LogicException;
+
+class InvalidLengthException extends LogicException
 {
     /**
      * Description of the number of characters the National Identification Number should have.
