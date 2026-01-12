@@ -11,14 +11,22 @@ class InvalidLengthException extends LogicException
      *
      * @var string
      */
-    private string $requiredCharacters;
+    public string $requiredCharacters {
+        get {
+            return $this->requiredCharacters;
+        }
+    }
 
     /**
      * Description of the numbers of characters that were passed.
      *
      * @var string
      */
-    private string $givenCharacters;
+    public string $givenCharacters {
+        get {
+            return $this->givenCharacters;
+        }
+    }
 
     /**
      * Create a new InvalidLengthException instance.
@@ -36,23 +44,4 @@ class InvalidLengthException extends LogicException
         parent::__construct("The $designation must have $requiredCharacters characters, but got $givenCharacters.");
     }
 
-    /**
-     * Get the required characters.
-     *
-     * @return string
-     */
-    public function getRequiredCharacters(): string
-    {
-        return $this->requiredCharacters;
-    }
-
-    /**
-     * Get given characters.
-     *
-     * @return string
-     */
-    public function getGivenCharacters(): string
-    {
-        return $this->givenCharacters;
-    }
 }
